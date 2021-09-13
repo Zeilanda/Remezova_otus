@@ -2,7 +2,7 @@
 Домашнее задание №1
 Функции и структуры данных
 """
-from typing import List
+from typing import List, Union
 
 
 def power_numbers(*args):
@@ -29,13 +29,13 @@ def is_prime(number):
     for i in range(1, number + 1):
         if number % i == 0:
             count += 1
-    if count < 2:
+    if count < 3:
         return True
     else:
         return False
 
 
-def filter_numbers(my_list: List[int], text: str) -> List[int]:
+def filter_numbers(my_list: List[int], text: str) -> Union[List[int], str]:
     """
     функция, которая на вход принимает список из целых чисел,
     и возвращает только чётные/нечётные/простые числа
@@ -48,12 +48,14 @@ def filter_numbers(my_list: List[int], text: str) -> List[int]:
 
     """
 
-    if text == 'odd':
+    if text == ODD:
         return list(filter(lambda x: x % 2 != 0, my_list))
-    elif text == 'even':
+    elif text == EVEN:
         return list(filter(lambda x: x % 2 == 0, my_list))
-    elif text == 'is prime':
+    elif text == PRIME:
         return list(filter(is_prime, my_list))
+    else:
+        return 'Error'
 
 
-print(filter_numbers([1, 2, 3], ODD))
+print(filter_numbers([1, 2, 3, 4, 12, 17], PRIME))
