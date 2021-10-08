@@ -1,3 +1,4 @@
 # Remezova_otus
 Homeworks Otus
-1 homework
+
+https://otus.ru/lessons/python-basic/
