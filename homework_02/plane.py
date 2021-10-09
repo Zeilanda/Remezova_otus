@@ -9,14 +9,13 @@ class Plane(Vehicle):
     cargo = 0
     max_cargo = 0
 
-    def __init__(self):
-        Plane.cargo = cargo
-        
+    def __init__(self, max_cargo, weight):
+        super().__init__(weight)
+        self.max_cargo = max_cargo
 
-    @classmethod
-    def load_cargo(needed_cargo):
-        if needed_cargo + cargo <= max_cargo:
-            cargo = needed_cargo + cargo
+    def load_cargo(self, needed_cargo):
+        if needed_cargo + self.cargo <= self.max_cargo:
+            self.cargo = needed_cargo + self.cargo
         else:
             raise CargoOverload()
 
