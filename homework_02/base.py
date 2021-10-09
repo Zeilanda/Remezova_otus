@@ -7,10 +7,10 @@ class Vehicle(ABC):
         self.weight = weight
         self.fuel = fuel
         self.fuel_consumption = fuel_consumption
-        self.started = False
+        self.started = True
 
     def start(self):
-        if self.started:
+        if not self.started:
             if self.fuel > 0:
                 self.started = True
             else:
