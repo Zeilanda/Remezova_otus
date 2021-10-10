@@ -25,15 +25,12 @@ PRIME = "prime"
 
 
 def is_prime(number):
-    count = 0
-    for i in range(1, number + 1):
+    for i in range(2, number):
         if number % i == 0:
-            count += 1
-    if count < 3:
-        return True
-    else:
+            return False
+    if number < 2:
         return False
-
+    return True
 
 def filter_numbers(my_list: List[int], text: str) -> Union[List[int], str]:
     """
@@ -58,4 +55,4 @@ def filter_numbers(my_list: List[int], text: str) -> Union[List[int], str]:
         return 'Error'
 
 
-print(filter_numbers([1, 2, 3, 4, 12, 17], PRIME))
+print(filter_numbers([0, 1, 2, 3, 4, 12, 17], PRIME))
