@@ -1,15 +1,15 @@
-from fastapi import FastAPI, Body
+from fastapi import FastAPI
 
 app = FastAPI()
 
 
 @app.get("/")
 def read_root():
-    return {"message": "Hello world!!!"}
+    return {"message": "Hello world!"}
 
 
-@app.post("/ping/")
-def create_item(data: dict = Body(...)):
+@app.get("/ping/")
+def get_ping():
     return {
         "message": "pong",
     }
