@@ -1,6 +1,8 @@
 """
 создайте асинхронные функции для выполнения запросов к ресурсам (используйте aiohttp)
 """
+from typing import List
+
 import aiohttp
 import asyncio
 
@@ -9,7 +11,7 @@ USERS_DATA_URL = "https://jsonplaceholder.typicode.com/users"
 POSTS_DATA_URL = "https://jsonplaceholder.typicode.com/posts"
 
 
-async def fetch_users_data():
+async def users_data() -> List[dict]:
     async with aiohttp.ClientSession() as session:
         async with session.get(USERS_DATA_URL) as response:
 
@@ -20,7 +22,7 @@ async def fetch_users_data():
             return html
 
 
-async def fetch_posts_data():
+async def posts_data() -> List[dict]:
     async with aiohttp.ClientSession() as session:
         async with session.get(POSTS_DATA_URL) as response:
 
