@@ -9,7 +9,7 @@ USERS_DATA_URL = "https://jsonplaceholder.typicode.com/users"
 POSTS_DATA_URL = "https://jsonplaceholder.typicode.com/posts"
 
 
-async def fetch_users():
+async def fetch_users_data():
     async with aiohttp.ClientSession() as session:
         async with session.get(USERS_DATA_URL) as response:
 
@@ -17,24 +17,24 @@ async def fetch_users():
             print('Content-type:', response.headers['content-type'])
 
             html = await response.json()
-            print("Body:", html)
+            return html
 
 
-async def fetch_posts():
+async def fetch_posts_data():
     async with aiohttp.ClientSession() as session:
-        async with session.get(USERS_DATA_URL) as response:
+        async with session.get(POSTS_DATA_URL) as response:
 
             print('Status', response.status)
             print('Content-type:', response.headers['content-type'])
 
             html = await response.json()
-            print("Body:", html)
+            return html
 
 
-async def run_main():
-    await fetch_users()
-    await fetch_posts()
-
-
-loop = asyncio.get_event_loop()
-loop.run_until_complete(run_main())
+# async def run_main():
+#     await fetch_users()
+#     await fetch_posts()
+#
+#
+# loop = asyncio.get_event_loop()
+# loop.run_until_complete(run_main())

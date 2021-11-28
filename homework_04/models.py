@@ -29,11 +29,12 @@ Session = sessionmaker(
 class User(Base):
 
     __tablename__ = 'User'
+    id = Column(Integer, primary_key=True)
     name = Column(String(32), default='')
     username = Column(String(32), unique=True)
     email = Column(String(32), unique=True)
 
-    posts = relationship("Post")
+    posts = relationship("Post", back_populates='user')
 
     # def __str__(self):
     #     return f"{self.__class__.__name__}(id={self.id}, " \
@@ -43,7 +44,9 @@ class User(Base):
 class Post(Base):
 
     __tablename__ = 'Post'
-    user_id = Column(Integer, ForeignKey("User.username"), nullable=True)
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("User.id"), nullable=False)
     title = Column(String(256), nullable=False, default='', server_default='')
     body = Column(Text, nullable=False, default="", server_default="")
 
+    user = relationship("User", back_populates='posts')
