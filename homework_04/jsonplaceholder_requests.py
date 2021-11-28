@@ -11,7 +11,7 @@ USERS_DATA_URL = "https://jsonplaceholder.typicode.com/users"
 POSTS_DATA_URL = "https://jsonplaceholder.typicode.com/posts"
 
 
-async def users_data() -> List[dict]:
+async def get_users() -> List[dict]:
     async with aiohttp.ClientSession() as session:
         async with session.get(USERS_DATA_URL) as response:
 
@@ -22,7 +22,7 @@ async def users_data() -> List[dict]:
             return html
 
 
-async def posts_data() -> List[dict]:
+async def get_posts() -> List[dict]:
     async with aiohttp.ClientSession() as session:
         async with session.get(POSTS_DATA_URL) as response:
 

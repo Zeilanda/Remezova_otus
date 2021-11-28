@@ -13,11 +13,12 @@
 - закрытие соединения с БД
 """
 import asyncio
+from typing import List
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import async_session, AsyncSession
 
-from jsonplaceholder_requests import users_data, posts_data
+from jsonplaceholder_requests import get_users, get_posts
 from models import engine, Base, User, Post, Session
 
 
@@ -31,32 +32,37 @@ async def create_tables():
         await conn.run_sync(Base.metadata.create_all)
 
 
-async def add_users():
+async def fetch_users_data() -> List[User]:
     users_list = []
-    for user in await users_data():
+    for user in await get_users():
         user_bd = User(id=user['id'], name=user['name'], username=user['username'], email=user['email'])
         users_list.append(user_bd)
-    async with Session() as session:  # type: AsyncSession
-        async with session.begin():
-            session.add_all(users_list)
+    return users_list
 
 
-async def add_post():
+async def fetch_posts_data() -> List[Post]:
     posts_list = []
-    for post in await posts_data():
+    for post in await get_posts():
         post_bd = Post(id=post['id'], user_id=post['userId'], title=post['title'], body=post['body'])
         posts_list.append(post_bd)
+    return posts_list
+
+
+async def add_users():
+    # users_data: List[dict]
+    # posts_data: List[dict]
+    users_data, posts_data = await asyncio.gather(
+        fetch_users_data(),
+        fetch_posts_data(),
+    )
     async with Session() as session:  # type: AsyncSession
         async with session.begin():
-            session.add_all(posts_list)
+            session.add_all(users_data + posts_data)
 
 
 async def async_main():
     await create_tables()
-    await asyncio.gather(
-        add_users(),
-        add_post(),
-    )
+    await add_users()
 
 
 def main():
