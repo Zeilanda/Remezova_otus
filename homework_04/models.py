@@ -28,6 +28,7 @@ Session = sessionmaker(
 
 class User(Base):
 
+    __tablename__ = 'User'
     name = Column(String(32), default='')
     username = Column(String(32), unique=True)
     email = Column(String(32), unique=True)
@@ -40,6 +41,8 @@ class User(Base):
 
 
 class Post(Base):
+
+    __tablename__ = 'Post'
     user_id = Column(Integer, ForeignKey("User.username"), nullable=True)
     title = Column(String(256), nullable=False, default='', server_default='')
     body = Column(Text, nullable=False, default="", server_default="")
