@@ -13,8 +13,8 @@
 from flask import Flask, Blueprint, render_template
 
 app = Flask(__name__)
-main = Blueprint("main", __name__)
-app.register_blueprint(main, url_prefix='/')
+# main = Blueprint("main", __name__)
+# app.register_blueprint(Blueprint("main", __name__), url_prefix='/')
 
 
 @app.route('/', endpoint='home')
