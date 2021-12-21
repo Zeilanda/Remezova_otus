@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 
 
@@ -7,15 +6,17 @@
 {% endblock %}
 
 {% block main_container %}
+    <div class="container">
+        <h2>Добро пожаловать в адвент-календарь ко дню Святого Валентина!</h2>
+    </div>
 
-<h2>Добро пожаловать в адвент-календарь ко дню Святого Валентина!</h2>
-<ul>
-{#    <li>#}
-{#        <a href="/">Main</a>#}
-{#    </li>#}
-    <li>
-        <a href="/cards/">Карточки дней</a>
-    </li>
-</ul>
+    <div class="container">
+        {#    <li>#}
+        {#        <a href="/">Main</a>#}
+        {#    </li>#}
+        <p>
+            <a href="/cards/">Карточки дней</a>
+        </p>
+    </div>
 
 {% endblock %}
