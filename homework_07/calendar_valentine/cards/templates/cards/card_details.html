@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+    Карточки дней
+{% endblock %}
+
+
+{% block main_container %}
+
+<div>
+    <p>
+        <a href="/">На главную</a>
+    </p>
+</div>
+<div>
+    <p>
+        <a href="/cards/">Ко всем карточкам</a>
+    </p>
+</div>
+<h2>{{ card.title }}</h2>
+<div>
+    {{ card.body }}
+</div>
+
+{% endblock %}
