@@ -10,7 +10,7 @@ urlpatterns = [
     path('cards/',
          cards.CardsListView.as_view(),
          name='cards_list'),
-    path('cards/<int:pk>/',
-         cards.CardDetailView.as_view(),
+    path('cards/<slug:slug>/',
+         cards.CardDetailView.as_view(template_name='cards/card_detail.html'),
          name='card_detail'),
 ]

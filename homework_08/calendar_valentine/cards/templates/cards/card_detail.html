@@ -20,8 +20,8 @@
                 <p class="card-text">{{ card.body }}</p>
             </div>
             <div class="card-body">
-                <a href="/cards/{{ card.id }}" class="card-link">Предыдущий день</a>
-                <a href="/cards/{{ card.id }}" class="card-link">Следующий день</a>
+                <a href="{{ card.get_previous_by_slug.get_absolute_url }}" class="card-link">Предыдущий день</a>
+                <a href="{{ card.get_next_by_slug.get_absolute_url }}" class="card-link">Следующий день</a>
             </div>
         </div>
     </div>

@@ -7,17 +7,16 @@
 {% block main_container %}
 
 
-    {#    <ul>#}
-    {#        <li>#}
-    {#            <a href="/cards/">Ко всем карточкам</a>#}
-    {#        </li>#}
-    {#    </ul>#}
+
+
+
     <div class="container-md">
+    <div><a href="{% url 'cards:index' %}">На главную</a></div>
         <ul>
             {% for card in card_list %}
                 <li>
 {#                    <a href="/cards/{{ card.id }}/">{{ card }}</a>#}
-                    <a href="{% url 'cards:card_detail' card.id %}">{{ card }}</a>
+                    <a href="{{ card.get_absolute_url }}">{{ card }}</a>
                 </li>
             {% endfor %}
         </ul>

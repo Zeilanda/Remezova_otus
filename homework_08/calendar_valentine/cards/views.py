@@ -18,6 +18,14 @@ class CardsListView(ListView):
     model = Card
 
 
+class CardDetailView(DetailView):
+    model = Card
+    context_object_name = 'card'
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(Card, slug__iexact=self.kwargs['slug'])
+
+
 # def cards_list(request):
 #     cards = Card.objects.all()
 #     context = {
@@ -38,5 +46,3 @@ class CardsListView(ListView):
 #
 
 
-class CardDetailView(DetailView):
-    model = Card
