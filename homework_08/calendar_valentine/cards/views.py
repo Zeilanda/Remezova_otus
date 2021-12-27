@@ -9,7 +9,7 @@ from cards.models import Card
 def index(request):
     cards = Card.objects.all()
     context = {
-        'cards': cards,
+        'card_list': cards,
     }
     return render(request, 'cards/index.html', context=context)
 
